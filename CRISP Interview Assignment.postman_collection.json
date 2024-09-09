@@ -1,0 +1,290 @@
+{
+	"info": {
+		"_postman_id": "484d8b9a-1fd1-4880-8316-a8b016f36722",
+		"name": "CRISP Interview Assignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17617473",
+		"_collection_link": "https://www.postman.com/jyothijoe/workspace/automation-testing/collection/17617473-484d8b9a-1fd1-4880-8316-a8b016f36722?action=share&source=collection_link&creator=17617473"
+	},
+	"item": [
+		{
+			"name": "full API Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const Ajv = require('ajv')\r",
+							"const ajv = new Ajv();\r",
+							"var responsebody = pm.response.json();\r",
+							"console.log(responsebody.Id)\r",
+							"\r",
+							"pm.test(\"verify if the status code is 200\", function(){\r",
+							"\tpm.expect(pm.response.status).to.be.equal(\"OK\")\r",
+							"})\r",
+							"pm.test(\"verify if the response time is less than 500ms\", function(){\r",
+							"    pm.expect(pm.response.responseTime).lessThan(500);\r",
+							"});\r",
+							"var schema = {  \r",
+							" \r",
+							"  \"type\": \"array\",\r",
+							"  \"items\": [\r",
+							"    {\r",
+							"      \"type\": \"object\",\r",
+							"      \"properties\": {\r",
+							"        \"Id\": {\r",
+							"          \"type\": \"string\"\r",
+							"        },\r",
+							"        \"Name\": {\r",
+							"          \"type\": \"string\"\r",
+							"        },\r",
+							"        \"DateOfBirth\": {\r",
+							"          \"type\": \"string\"\r",
+							"        },\r",
+							"        \"Address\": {\r",
+							"          \"type\": \"string\"\r",
+							"        }\r",
+							"      },\r",
+							"      \"required\": [\r",
+							"        \"Id\",\r",
+							"        \"Name\",\r",
+							"        \"DateOfBirth\",\r",
+							"        \"Address\"\r",
+							"      ]\r",
+							"    },\r",
+							"    {\r",
+							"      \"type\": \"object\",\r",
+							"      \"properties\": {\r",
+							"        \"Id\": {\r",
+							"          \"type\": \"string\"\r",
+							"        },\r",
+							"        \"Name\": {\r",
+							"          \"type\": \"string\"\r",
+							"        },\r",
+							"        \"DateOfBirth\": {\r",
+							"          \"type\": \"string\"\r",
+							"        },\r",
+							"        \"Address\": {\r",
+							"          \"type\": \"string\"\r",
+							"        }\r",
+							"      },\r",
+							"      \"required\": [\r",
+							"        \"Id\",\r",
+							"        \"Name\",\r",
+							"        \"DateOfBirth\",\r",
+							"        \"Address\"\r",
+							"      ]\r",
+							"    },\r",
+							"    {\r",
+							"      \"type\": \"object\",\r",
+							"      \"properties\": {\r",
+							"        \"Id\": {\r",
+							"          \"type\": \"string\"\r",
+							"        },\r",
+							"        \"Name\": {\r",
+							"          \"type\": \"string\"\r",
+							"        },\r",
+							"        \"DateOfBirth\": {\r",
+							"          \"type\": \"string\"\r",
+							"        },\r",
+							"        \"Address\": {\r",
+							"          \"type\": \"string\"\r",
+							"        }\r",
+							"      },\r",
+							"      \"required\": [\r",
+							"        \"Id\",\r",
+							"        \"Name\",\r",
+							"        \"DateOfBirth\",\r",
+							"        \"Address\"\r",
+							"      ]\r",
+							"    },\r",
+							"    {\r",
+							"      \"type\": \"object\",\r",
+							"      \"properties\": {\r",
+							"        \"Id\": {\r",
+							"          \"type\": \"string\"\r",
+							"        },\r",
+							"        \"Name\": {\r",
+							"          \"type\": \"string\"\r",
+							"        },\r",
+							"        \"DateOfBirth\": {\r",
+							"          \"type\": \"string\"\r",
+							"        },\r",
+							"        \"Address\": {\r",
+							"          \"type\": \"string\"\r",
+							"        }\r",
+							"      },\r",
+							"      \"required\": [\r",
+							"        \"Id\",\r",
+							"        \"Name\",\r",
+							"        \"DateOfBirth\",\r",
+							"        \"Address\"\r",
+							"      ]\r",
+							"    }\r",
+							"  ]\r",
+							"};\r",
+							"\r",
+							"var data1 = [true, false];\r",
+							"var data2 = [true, 123];\r",
+							"\r",
+							"pm.test('Schema is valid', function () {\r",
+							"   const validate = ajv.compile(schema);\r",
+							"   const valid = validate(pm.response.json());\r",
+							"    pm.expect(valid).to.be.true;\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Id",
+						"value": "222",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/patients/query/",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"patients",
+						"query",
+						""
+					],
+					"query": [
+						{
+							"key": "Id",
+							"value": "222",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "HappyFlow1 API Request",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n    {\r\n        \"Id\": \"{{PM_Id}}\",\r\n        \"Name\": \"{{PM_Name}}\",\r\n        \"DateOfBirth\": \"{{PM_DateOfBirth}}\",\r\n        \"Address\": \"{{PM_Address}}\"\r\n    }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/patients/query/?Id=111",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"patients",
+						"query",
+						""
+					],
+					"query": [
+						{
+							"key": "Id",
+							"value": "111"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Happy Flow2 API Request",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"Id\": \"{{PM_Id}}\",\r\n        \"Name\": \"{{PM_Name}}\",\r\n        \"DateOfBirth\": \"{{PM_DateOfBirth}}\",\r\n        \"Address\": \"{{PM_Address}}\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/patients/query/?Name=Jack",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"patients",
+						"query",
+						""
+					],
+					"query": [
+						{
+							"key": "Name",
+							"value": "Jack"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "HappyFlow3 API Request",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"Id\": \"{{PM_Id}}\",\r\n        \"Name\": \"{{PM_Name}}\",\r\n        \"DateOfBirth\": \"{{PM_DateOfBirth}}\",\r\n        \"Address\": \"{{PM_Address}}\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/patients/query/?Address=MD",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"patients",
+						"query",
+						""
+					],
+					"query": [
+						{
+							"key": "Address",
+							"value": "MD"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "https://apimgmt-dev-crisp.azure-api.net"
+		}
+	]
+}
